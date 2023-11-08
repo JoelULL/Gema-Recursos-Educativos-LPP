@@ -13,5 +13,8 @@ module RecursosEducativos
       @temporalizacion = temporalizacion
       @concepto = concepto
     end
+    def to_s
+      array_string = @concepto.map{|simbolo| simbolo.to_s}
+      "array_string"
   end
 end
