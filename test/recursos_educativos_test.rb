@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "test_helper"
-require "/home/usuario/LPPP/recursos_educativos/lib/recursos_educativos/recurso.rb"
+#require "/home/usuario/LPPP/recursos_educativos/lib/recursos_educativos/recurso.rb"
 class RecursosEducativosTest < Test::Unit::TestCase
   test "VERSION" do
     assert do
