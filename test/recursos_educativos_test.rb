@@ -9,7 +9,11 @@ class RecursosEducativosTest < Test::Unit::TestCase
     end
   end
 
-  test "something useful" do
-    assert_equal("expected", "expected")
+  test "prueba clase vacia" do
+    def test_class_exists
+      assert_nothing_raised do
+        RecursosEducativos::Recurso.new
+      end
+    end
   end
 end
