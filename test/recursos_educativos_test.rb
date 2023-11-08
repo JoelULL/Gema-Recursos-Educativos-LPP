@@ -33,9 +33,12 @@ class RecursosEducativosTest < Test::Unit::TestCase
       assert_equal([:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion],@recurso_default.concepto)
   end
 
-    def test_to_s
+  def test_to_s
       assert_equal("Recurso: Identificacion: 1 - Marca: marca - Titulo: titulo - Descripcion: descripcion - Experiencia: nivel - Tipo: tipo - Categoria: categoria - Material: material - Temporalizacion: 60 - Conceptos: [\"razonamiento\", \"abstraccion\", \"descomposicion\", \"patrones\", \"algoritmos\", \"codificacion\", \"validacion\"]",@recurso_default.to_s)
 
-    end
+  end
 
+  def test_obtener_temporalizacion
+    assert_equal(60,RecursosEducativos.obtener_temporalizacion(@recurso_default))
+  end 
 end
