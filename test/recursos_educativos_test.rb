@@ -9,10 +9,10 @@ class RecursosEducativosTest < Test::Unit::TestCase
     end
   end
 
-  test "prueba clase vacia" do
+  test "prueba clase con atributos" do
     def test_class_exists
       assert_nothing_raised do
-        RecursosEducativos::Recurso.new
+        RecursosEducativos::Recurso.new(1,"code.org","write your first computer","descripcion","begginer","plugged","smartphone",60,[:algoritmos, :codificacion])
       end
     end
   end
