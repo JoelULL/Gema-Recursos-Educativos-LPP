@@ -15,6 +15,7 @@ module RecursosEducativos
     end
     def to_s
       array_string = @concepto.map{|simbolo| simbolo.to_s}
-      "array_string"
+      array_string
+    end
   end
 end
