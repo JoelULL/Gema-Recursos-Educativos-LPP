@@ -34,7 +34,8 @@ class RecursosEducativosTest < Test::Unit::TestCase
   end
 
     def test_to_s
-      assert_equal(["razonamiento", "abstraccion", "descomposicion", "patrones", "algoritmos", "codificacion","validacion"],@recurso_default.to_s)
+      assert_equal("Recurso: Identificacion: 1 - Marca: marca - Titulo: titulo - Descripcion: descripcion - Experiencia: nivel - Tipo: tipo - Categoria: categoria - Material: material - Temporalizacion: 60 - Conceptos: [\"razonamiento\", \"abstraccion\", \"descomposicion\", \"patrones\", \"algoritmos\", \"codificacion\", \"validacion\"]",@recurso_default.to_s)
+
     end
 
 end
