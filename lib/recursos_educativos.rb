@@ -7,4 +7,7 @@ require "recursos_educativos/constantes_recurso"
 module RecursosEducativos
   class Error < StandardError; end
   # Your code goes here...
+  def self.obtener_temporalizacion(recurso)
+    return recurso.temporalizacion
+  end
 end
