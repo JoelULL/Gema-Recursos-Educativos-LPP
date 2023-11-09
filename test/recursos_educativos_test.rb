@@ -40,5 +40,11 @@ class RecursosEducativosTest < Test::Unit::TestCase
 
   def test_obtener_temporalizacion
     assert_equal(60,RecursosEducativos.obtener_temporalizacion(@recurso_default))
-  end 
+  end
+
+ test "prueba constantes" do
+     assert_equal(:beginner, RecursosEducativos::BEGINNER)
+     assert_equal(:intermediate, RecursosEducativos::INTERMEDIATE)
+     assert_equal(:expert, RecursosEducativos::EXPERT)
+  end
 end
