@@ -3,7 +3,7 @@
 require_relative "recursos_educativos/version"
 require "recursos_educativos/recurso"
 require "recursos_educativos/digitales_abiertos"
-
+require "recursos_educativos/entorno_digital"
 require "recursos_educativos/constantes_recurso"
 #Modulo principal de la gema que representa Recursos educativos.
 module RecursosEducativos
