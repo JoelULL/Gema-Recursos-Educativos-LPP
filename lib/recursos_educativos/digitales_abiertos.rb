@@ -6,5 +6,9 @@ module RecursosEducativos
     @uri = uri
     @fecha_creacion = fecha_creacion
     end
+    def to_s
+      array_string = @concepto.map{|simbolo| simbolo.to_s}
+      "Recurso: Identificacion: #{@id} - Marca: #{@marca} - Titulo: #{@titulo} - Descripcion: #{@descripcion} - Experiencia: #{@nivel_experiencia} - Tipo: #{@tipo_actividad} - Categoria: #{@categoria} - Material: #{@material} - Temporalizacion: #{@temporalizacion} - Conceptos: #{array_string}, - URI: #{@uri}, -Fecha de creacion: #{@fecha_creacion}"
+    end
   end
 end
