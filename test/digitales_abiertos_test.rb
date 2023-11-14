@@ -16,4 +16,8 @@ class DigitalesAbiertosTest < Test::Unit::TestCase
     assert_equal("foo://example.com:8042/over/there?name=ferret#nose",@recurso_default.uri)
     assert_equal("9-12-2012",@recurso_default.fecha_creacion)
   end
+  def test_to_s
+      assert_equal("Recurso: Identificacion: 1 - Marca: marca - Titulo: titulo - Descripcion: descripcion - Experiencia: nivel - Tipo: tipo - Categoria: categoria - Material: material - Temporalizacion: 60 - Conceptos: [\"razonamiento\", \"abstraccion\", \"descomposicion\", \"patrones\", \"algoritmos\", \"codificacion\", \"validacion\"], - URI: foo://example.com:8042/over/there?name=ferret#nose, -Fecha de creacion: 9-12-2012",@recurso_default.to_s)
+
+  end
 end
