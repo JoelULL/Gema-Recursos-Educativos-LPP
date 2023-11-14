@@ -8,7 +8,7 @@ module RecursosEducativos
       @coleccion = coleccion
     end
     def to_s
-      nombres_recursos = coleccion.map { |recurso| recurso.nombre }
+      nombres_recursos = coleccion.map { |recurso| recurso.titulo }
       "- Id :#{@id_code} - nombre: #{@nombre} -categoria: #{@categoria} -coleccion:#{nombres_recursos.join(', ')}"
     end
   end
