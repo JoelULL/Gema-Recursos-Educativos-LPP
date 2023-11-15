@@ -26,4 +26,8 @@ class EntornoDigitalTest < Test::Unit::TestCase
   def test_numero_de_recursos_coleccion
     assert_equal(3,@entorno_default.numero_de_recursos_coleccion)
   end
+  def test_nivel_medio_experiencia
+    assert_equal(:intermediate,@entorno_default.nivel_medio)
+  end
+
 end
