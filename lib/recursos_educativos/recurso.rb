@@ -30,7 +30,7 @@ module RecursosEducativos
       self.ancestors
     end
     def self.count
-      @@number_of_points
+      @@numero_de_recursos
     end
   end
 end
