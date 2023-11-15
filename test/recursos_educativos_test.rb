@@ -45,4 +45,8 @@ class RecursosEducativosTest < Test::Unit::TestCase
      assert_equal(:intermediate, RecursosEducativos::INTERMEDIATE)
      assert_equal(:expert, RecursosEducativos::EXPERT)
   end
+
+  def test_herencia
+    assert_equal([RecursosEducativos::Recurso, Object, Kernel, BasicObject],RecursosEducativos::Recurso.herencia_de_clase)
+  end
 end

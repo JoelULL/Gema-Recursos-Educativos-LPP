@@ -20,4 +20,8 @@ class DigitalesAbiertosTest < Test::Unit::TestCase
       assert_equal("Recurso: Identificacion: 1 - Marca: marca - Titulo: titulo - Descripcion: descripcion - Experiencia: nivel - Tipo: tipo - Categoria: categoria - Material: material - Temporalizacion: 60 - Conceptos: [\"razonamiento\", \"abstraccion\", \"descomposicion\", \"patrones\", \"algoritmos\", \"codificacion\", \"validacion\"], - URI: foo://example.com:8042/over/there?name=ferret#nose, -Fecha de creacion: 9-12-2012",@recurso_default.to_s)
 
   end
+  def test_herencia_hija
+    assert_equal([RecursosEducativos::DigitalesAbiertos, RecursosEducativos::Recurso, Object, Kernel, BasicObject],RecursosEducativos::DigitalesAbiertos.herencia_de_clase)
+  end
+
 end
