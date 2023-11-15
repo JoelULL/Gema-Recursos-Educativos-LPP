@@ -20,5 +20,9 @@ module RecursosEducativos
       array_string = @concepto.map{|simbolo| simbolo.to_s}
       "Recurso: Identificacion: #{@id} - Marca: #{@marca} - Titulo: #{@titulo} - Descripcion: #{@descripcion} - Experiencia: #{@nivel_experiencia} - Tipo: #{@tipo_actividad} - Categoria: #{@categoria} - Material: #{@material} - Temporalizacion: #{@temporalizacion} - Conceptos: #{array_string}"
     end
+    #metodo para comprobar la herencia de clases
+    def self.herencia_de_clase
+      self.ancestors
+    end
   end
 end
