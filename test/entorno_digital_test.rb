@@ -23,4 +23,7 @@ class EntornoDigitalTest < Test::Unit::TestCase
   def test_to_s
     assert_equal("- Id :1 - nombre: nombre -categoria: taller -coleccion:titulo1, titulo2, titulo3",@entorno_default.to_s)
   end
+  def test_numero_de_recursos_coleccion
+    assert_equal(3,@entorno_default.numero_de_recursos_coleccion)
+  end
 end
