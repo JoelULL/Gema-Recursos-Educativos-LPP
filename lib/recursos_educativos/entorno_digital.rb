@@ -1,7 +1,7 @@
 module RecursosEducativos
   class EntornoDigital
     attr_reader :id_code, :nombre, :categoria, :coleccion
-    def initialize(id_code,nombre,categoria,coleccion)
+    def initialize(id_code,nombre,categoria,coleccion = [])
       @id_code = id_code
       @nombre = nombre
       @categoria = categoria
@@ -15,23 +15,27 @@ module RecursosEducativos
       @coleccion.size
     end
     def nivel_medio
-      # Asociar un número a cada nivel de dificultad directamente
-      valores_niveles = {
-        RecursosEducativos::BEGINNER => 1,
-        RecursosEducativos::INTERMEDIATE => 2,
-        RecursosEducativos::EXPERT => 3
-      }
-      valores = (@coleccion.categoria).map { |nivel| valores_niveles[nivel] }
-
-      # Calcula el promedio dividiendo la suma total por la cantidad de elementos
-      promedio = valores.sum.to_f / valores.size
-      case promedio
-      when 0..1
-        RecursosEducativos::BEGINNER
+      return nil if coleccion.empty?
+      niveles = @coleccion.map do |recurso|
+        case recurso.nivel_experiencia
+        when RecursosEducativos::BEGINNER
+          1
+        when RecursosEducativos::INTERMEDIATE
+          2
+        when RecursosEducativos::EXPERT
+          3
+        end
+      end
+      nivel_medio = niveles.sum / coleccion.length.to_f
+      case nivel_medio.round
+      when 1
+       RecursosEducativos::BEGINNER
       when 2
         RecursosEducativos::INTERMEDIATE
-      else
+      when 3
         RecursosEducativos::EXPERT
+      else
+        RecursosEducativos::BEGINNER
       end
     end
   end
