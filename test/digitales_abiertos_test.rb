@@ -24,4 +24,8 @@ class DigitalesAbiertosTest < Test::Unit::TestCase
     assert_equal([RecursosEducativos::DigitalesAbiertos, RecursosEducativos::Recurso, Object, Kernel, BasicObject],RecursosEducativos::DigitalesAbiertos.herencia_de_clase)
   end
 
+  def test_contar_instancia_hija
+    assert_not_equal(0,RecursosEducativos::DigitalesAbiertos.count)
+  end
+
 end

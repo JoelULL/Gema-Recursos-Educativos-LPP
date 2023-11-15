@@ -49,4 +49,8 @@ class RecursosEducativosTest < Test::Unit::TestCase
   def test_herencia
     assert_equal([RecursosEducativos::Recurso, Object, Kernel, BasicObject],RecursosEducativos::Recurso.herencia_de_clase)
   end
+  def test_numero_recursos
+    assert_not_equal(0,RecursosEducativos::Recurso.count)
+  end
+  
 end
