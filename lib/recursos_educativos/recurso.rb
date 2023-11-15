@@ -14,6 +14,11 @@ module RecursosEducativos
       @material = material
       @temporalizacion = temporalizacion
       @concepto = concepto
+      if defined?(@@numero_de_recursos)
+        @@numero_de_recursos += 1
+      else
+        @@numero_de_recursos = 1
+      end
     end
     #metodo to_s para mostrar el contenido de los parametros del objeto recurso.
     def to_s
@@ -23,6 +28,9 @@ module RecursosEducativos
     #metodo para comprobar la herencia de clases
     def self.herencia_de_clase
       self.ancestors
+    end
+    def self.count
+      @@number_of_points
     end
   end
 end
