@@ -1,6 +1,7 @@
 module RecursosEducativos
   #clase para representar un recurso. en un modulo de recursos educativos. Este tipo de recurso es de  #pensamiento computacional. Se ha de instanciar con los argumentos: identificador, marca, titulo, descripcion, nivel de experiencia, tipo de actividad, categoria del recursos, material necesario, temporalizacion y conceptos.
   class Recurso
+    include Comparable
     #getters del objeto
     attr_reader :id, :marca, :titulo, :descripcion, :nivel_experiencia, :tipo_actividad, :categoria,:material, :temporalizacion, :concepto
     def initialize(id, marca, titulo, descripcion, nivel_experiencia,tipo_actividad, categoria, material, temporalizacion, concepto)
@@ -29,8 +30,12 @@ module RecursosEducativos
     def self.herencia_de_clase
       self.ancestors
     end
+    #metodo de clase para contar instancias
     def self.count
       @@numero_de_recursos
+    end
+    def <=>(other)
+      @temporalizacion <=> other.temporalizacion
     end
   end
 end
