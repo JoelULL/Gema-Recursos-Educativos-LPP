@@ -11,5 +11,8 @@ module RecursosEducativos
       nombres_recursos = coleccion.map { |recurso| recurso.titulo }
       "- Id :#{@id_code} - nombre: #{@nombre} -categoria: #{@categoria} -coleccion:#{nombres_recursos.join(', ')}"
     end
+    def numero_de_recursos_coleccion
+      @coleccion.size
+    end
   end
 end
