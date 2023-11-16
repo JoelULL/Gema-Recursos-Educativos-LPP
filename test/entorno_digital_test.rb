@@ -9,16 +9,27 @@ class EntornoDigitalTest < Test::Unit::TestCase
      @recurso_2 = RecursosEducativos::Recurso.new(2,"marca","titulo2","descripcion",RecursosEducativos::EXPERT,"tipo","categoria","material",60,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion])
 #INTERMEDIATE
     @recurso_3 = RecursosEducativos::Recurso.new(3,"marca","titulo3","descripcion",RecursosEducativos::INTERMEDIATE,"tipo","categoria","material",60,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion])
+    @recurso_4 = RecursosEducativos::Recurso.new(4,"marca","titulo3","descripcion",RecursosEducativos::BEGINNER,"tipo","categoria","material",60,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion])
 
     @entorno_default = RecursosEducativos::EntornoDigital.new(1,"nombre",:taller,[@recurso_1,@recurso_2,@recurso_3])
+    @entorno_nivel = RecursosEducativos::EntornoDigital.new(1,"nombre",:taller,[@recurso_2,@recurso_3])
+    @entorno_nivel2 =RecursosEducativos::EntornoDigital.new(1,"nombre",:taller,[@recurso_1,@recurso_4])
   end
 
   def test_getters
-   #assert_equal(1,@recurso_default.id)
     assert_equal(1,@entorno_default.id_code)
     assert_equal("nombre",@entorno_default.nombre)
     assert_equal(:taller,@entorno_default.categoria)
     assert_equal([@recurso_1,@recurso_2,@recurso_3],@entorno_default.coleccion) 
+  end
+  def comprobacion_tipos_atributos
+    assert_kind_of(Integer,@entorno_default.id_code)
+    assert_kind_of(String,@entorno_default.nombre)
+    assert_kind_of(Symbol,@entorno_default.categoria)
+    assert_kind_of(Array,@entorno_default.coleccion)
+    @recurso_default.each do |recurso|
+      assert_kind_of(RecursosEducativos::Recurso, recurso)
+    end
   end
   def test_to_s
     assert_equal("- Id :1 - nombre: nombre -categoria: taller -coleccion:titulo1, titulo2, titulo3",@entorno_default.to_s)
@@ -28,6 +39,16 @@ class EntornoDigitalTest < Test::Unit::TestCase
   end
   def test_nivel_medio_experiencia
     assert_equal(:intermediate,@entorno_default.nivel_medio)
+    assert_equal(:expert,@entorno_nivel.nivel_medio)
+    assert_equal(:beginner,@entorno_nivel2.nivel_medio)
+  end
+  def test_herencia_entorno_digital
+    assert_instance_of(RecursosEducativos::EntornoDigital,@entorno_default)
+    assert_kind_of(Object,RecursosEducativos::EntornoDigital)
+    assert_kind_of(Class,RecursosEducativos::EntornoDigital)
+    assert_kind_of(Module,RecursosEducativos::EntornoDigital)
+    assert_kind_of(BasicObject,RecursosEducativos::EntornoDigital)
+
   end
 
 end

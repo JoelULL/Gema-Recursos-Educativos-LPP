@@ -17,7 +17,7 @@ class RecursosEducativosTest < Test::Unit::TestCase
   def setup
      @recurso_default = RecursosEducativos::Recurso.new(1,"marca","titulo","descripcion","nivel","tipo","categoria","material",60,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion])
      @recurso_comparable = RecursosEducativos::Recurso.new(2,"marca","titulo","descripcion","nivel","tipo","categoria","material",70,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion])
-
+    @recurso_medio = RecursosEducativos::Recurso.new(3,"marca","titulo","descripcion","nivel","tipo","categoria","material",65,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion])
   end
 
   def test_getters
@@ -31,6 +31,23 @@ class RecursosEducativosTest < Test::Unit::TestCase
       assert_equal("material",@recurso_default.material)
       assert_equal(60,@recurso_default.temporalizacion)
       assert_equal([:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion],@recurso_default.concepto)
+  end
+
+  def comprobacion_tipo
+      assert_kind_of(Integer,@recurso_default.id)
+      assert_kind_of(String,@recurso_default.marca)
+      assert_kind_of(String,@recurso_default.titulo)
+      assert_kind_of(String,@recurso_default.descripcion)
+      assert_kind_of(Symbol,@recurso_default.nivel_experiencia)
+      assert_kind_of(String,@recurso_default.tipo_actividad)
+      assert_kind_of(String,@recurso_default.categoria)
+      assert_kind_of(String,@recurso_default.material)
+      assert_kind_of(Integer,@recurso_default.temporalizacion)
+      assert_kind_of(Array,@recurso_default.concepto)
+      @recurso_default.concepto.each do |concepto|
+        assert_kind_of(Symbol, concepto)
+      end
+
   end
 
   def test_to_s
@@ -50,6 +67,11 @@ class RecursosEducativosTest < Test::Unit::TestCase
 
   def test_herencia
     assert_equal([RecursosEducativos::Recurso, Comparable, Object, Kernel, BasicObject],RecursosEducativos::Recurso.herencia_de_clase)
+    assert_instance_of(RecursosEducativos::Recurso,@recurso_default)
+    assert_kind_of(Object,RecursosEducativos::Recurso)
+    assert_kind_of(Class,RecursosEducativos::Recurso)
+    assert_kind_of(Module,RecursosEducativos::Recurso)
+    assert_kind_of(BasicObject,RecursosEducativos::Recurso)
   end
   def test_numero_recursos
     assert_not_equal(0,RecursosEducativos::Recurso.count)
@@ -59,7 +81,6 @@ class RecursosEducativosTest < Test::Unit::TestCase
     assert_true(@recurso_default < @recurso_comparable)
     assert_false(@recurso_default > @recurso_comparable)
     assert_false(@recurso_default == @recurso_comparable)
-  end
-
-  
+    assert_true(@recurso_default < @recurso_medio && @recurso_medio < @recurso_comparable)
+  end  
 end
