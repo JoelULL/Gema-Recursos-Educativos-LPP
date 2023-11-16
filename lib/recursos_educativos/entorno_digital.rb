@@ -1,4 +1,5 @@
 module RecursosEducativos
+  #Clase creada para representar un entorno digital de recursos educativos.
   class EntornoDigital
     attr_reader :id_code, :nombre, :categoria, :coleccion
     def initialize(id_code,nombre,categoria,coleccion = [])
@@ -11,9 +12,11 @@ module RecursosEducativos
       nombres_recursos = coleccion.map { |recurso| recurso.titulo }
       "- Id :#{@id_code} - nombre: #{@nombre} -categoria: #{@categoria} -coleccion:#{nombres_recursos.join(', ')}"
     end
+    #este metodo devuelve la cantidad de recursos que tenemos en la coleccion del objeto. La coleccion sera un atributo de la clase, un array de recursos.
     def numero_de_recursos_coleccion
       @coleccion.size
     end
+    #metodo que se encarga de calcular el nivel medio de la coleccion de recursos del entorno digital. Se le asigna un valor a cada nivel de experiencia representados con las constantes que ya se habian implementado. A mayor dificultad mayor valor. Se calcula la media y se devuelve el valor correspondiente del resultado con la dificultad media.
     def nivel_medio
       return nil if coleccion.empty?
       niveles = @coleccion.map do |recurso|

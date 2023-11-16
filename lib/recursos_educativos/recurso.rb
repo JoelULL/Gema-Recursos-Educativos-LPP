@@ -34,6 +34,7 @@ module RecursosEducativos
     def self.count
       @@numero_de_recursos
     end
+    #Mediante la inclusion del modulo comparable podremos cambiar el comportamiento del metodo <=> para poder comparar por temporalizacion las instancias
     def <=>(other)
       @temporalizacion <=> other.temporalizacion
     end
