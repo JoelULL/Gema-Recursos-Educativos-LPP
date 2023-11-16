@@ -3,13 +3,9 @@ class DigitalesAbiertosTest < Test::Unit::TestCase
   def test_class_empty
     assert_true(RecursosEducativos::DigitalesAbiertos.new(1,"marca","titulo","descripcion","nivel","tipo","categoria","material",60,[:razonamiento],"foo://example.com:8042/over/there?name=ferret#nose","9-12-2012").instance_of?(RecursosEducativos::DigitalesAbiertos))
   end
-  def test_herencia
-    assert_true(RecursosEducativos::DigitalesAbiertos.new(1,"marca","titulo","descripcion","nivel","tipo","categoria","material",60,[:razonamiento],"foo://example.com:8042/over/there?name=ferret#nose","9-12-2012").is_a?(RecursosEducativos::Recurso))
-    assert_true(RecursosEducativos::DigitalesAbiertos.is_a?(Module))
-    assert_true(RecursosEducativos::DigitalesAbiertos.is_a?(Object))
-    assert_true(RecursosEducativos::DigitalesAbiertos.is_a?(BasicObject))
-  end
+  
   def setup
+    RecursosEducativos::Recurso.class_variable_set(:@@numero_de_recursos,0)
     @recurso_default = RecursosEducativos::DigitalesAbiertos.new(1,"marca","titulo","descripcion","nivel","tipo","categoria","material",60,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion],"foo://example.com:8042/over/there?name=ferret#nose","9-12-2012")
     @recurso_comparable = RecursosEducativos::DigitalesAbiertos.new(2,"marca","titulo","descripcion","nivel","tipo","categoria","material",60,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion],"foo://example.com:8042/over/there?name=ferret#nose","1-1-2023")
     @recurso_medio = RecursosEducativos::DigitalesAbiertos.new(3,"marca","titulo","descripcion","nivel","tipo","categoria","material",60,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion],"foo://example.com:8042/over/there?name=ferret#nose","25-9-2021")
@@ -58,10 +54,11 @@ class DigitalesAbiertosTest < Test::Unit::TestCase
     assert_kind_of(Class,RecursosEducativos::DigitalesAbiertos)
     assert_kind_of(Module,RecursosEducativos::DigitalesAbiertos)
     assert_kind_of(BasicObject,RecursosEducativos::DigitalesAbiertos)
+    assert_true(RecursosEducativos::DigitalesAbiertos.new(1,"marca","titulo","descripcion","nivel","tipo","categoria","material",60,[:razonamiento],"foo://example.com:8042/over/there?name=ferret#nose","9-12-2012").is_a?(RecursosEducativos::Recurso))
   end
 
   def test_contar_instancia_hija
-    assert_not_equal(nil,RecursosEducativos::DigitalesAbiertos.count)
+    assert_equal(3,RecursosEducativos::DigitalesAbiertos.count)
   end
 
   def test_comparador_digitales_abiertos

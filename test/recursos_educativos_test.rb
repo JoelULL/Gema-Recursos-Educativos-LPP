@@ -15,6 +15,7 @@ class RecursosEducativosTest < Test::Unit::TestCase
     end
   end
   def setup
+    RecursosEducativos::Recurso.class_variable_set(:@@numero_de_recursos,0)
      @recurso_default = RecursosEducativos::Recurso.new(1,"marca","titulo","descripcion","nivel","tipo","categoria","material",60,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion])
      @recurso_comparable = RecursosEducativos::Recurso.new(2,"marca","titulo","descripcion","nivel","tipo","categoria","material",70,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion])
     @recurso_medio = RecursosEducativos::Recurso.new(3,"marca","titulo","descripcion","nivel","tipo","categoria","material",65,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion])
@@ -74,7 +75,7 @@ class RecursosEducativosTest < Test::Unit::TestCase
     assert_kind_of(BasicObject,RecursosEducativos::Recurso)
   end
   def test_numero_recursos
-    assert_not_equal(0,RecursosEducativos::Recurso.count)
+    assert_equal(3,RecursosEducativos::Recurso.count)
   end
   
   def test_comparador_recurso
