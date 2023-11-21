@@ -32,6 +32,11 @@ class EntornoEducacionFormalTest < Test::Unit::TestCase
     assert_kind_of(Module,RecursosEducativos::EntornoEducacionFormal)
     assert_kind_of(BasicObject,RecursosEducativos::EntornoEducacionFormal)
   end
+
+  def test_to_s_formal
+    assert_equal("- Id :1 - nombre: nombre -categoria: taller -coleccion:titulo1, titulo2, titulo3,3",@entorno_default.to_s)
+  end
+
   
 end
 
