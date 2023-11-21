@@ -6,7 +6,7 @@ require "recursos_educativos/digitales_abiertos"
 require "recursos_educativos/entorno_digital"
 require "recursos_educativos/constantes_recurso"
 require "recursos_educativos/entorno_educacion_formal"
-#require "recursos_educativos/entorno_educacion_informal"
+require "recursos_educativos/entorno_educacion_informal"
 #Modulo principal de la gema que representa Recursos educativos.
 module RecursosEducativos
   class Error < StandardError; end
