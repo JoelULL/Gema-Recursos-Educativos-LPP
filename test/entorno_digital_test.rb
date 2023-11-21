@@ -50,5 +50,4 @@ class EntornoDigitalTest < Test::Unit::TestCase
     assert_kind_of(BasicObject,RecursosEducativos::EntornoDigital)
 
   end
-
 end
