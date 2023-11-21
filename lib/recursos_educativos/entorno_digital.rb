@@ -2,7 +2,7 @@ module RecursosEducativos
   #Clase creada para representar un entorno digital de recursos educativos.
   class EntornoDigital
     attr_reader :id_code, :nombre, :categoria, :coleccion
-    def initialize(id_code,nombre,categoria,coleccion = [])
+    def initialize(id_code,nombre,categoria,coleccion)
       @id_code = id_code
       @nombre = nombre
       @categoria = categoria
