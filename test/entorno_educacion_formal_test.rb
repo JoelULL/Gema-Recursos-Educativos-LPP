@@ -37,6 +37,15 @@ class EntornoEducacionFormalTest < Test::Unit::TestCase
     assert_equal("- Id :1 - nombre: nombre -categoria: taller -coleccion:titulo1, titulo2, titulo3,3",@entorno_default.to_s)
   end
 
-  
+  def comprobacion_tipos_atributos_formal
+    assert_kind_of(Integer,@entorno_default.id_code)
+    assert_kind_of(String,@entorno_default.nombre)
+    assert_kind_of(Symbol,@entorno_default.categoria)
+    assert_kind_of(Array,@entorno_default.coleccion)
+    @recurso_default.each do |recurso|
+      assert_kind_of(RecursosEducativos::Recurso, recurso)
+    end
+    assert_kind_of(Integer,@entorno_default.numero_niveles)
+  end  
 end
 
