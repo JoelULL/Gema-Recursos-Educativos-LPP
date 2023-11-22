@@ -7,7 +7,7 @@ class DigitalesAbiertosTest < Test::Unit::TestCase
   def setup
     RecursosEducativos::Recurso.class_variable_set(:@@numero_de_recursos,0)
     @recurso_default = RecursosEducativos::DigitalesAbiertos.new(1,"marca","titulo","descripcion","nivel","tipo","categoria","material",60,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion],"foo://example.com:8042/over/there?name=ferret#nose","9-12-2012")
-    @recurso_comparable = RecursosEducativos::DigitalesAbiertos.new(2,"marca","titulo","descripcion","nivel","tipo","categoria","material",60,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion],"foo://example.com:8042/over/there?name=ferret#nose","1-1-2023")
+    @recurso_comparable = RecursosEducativos::DigitalesAbiertos.new(2,"marca","titulo","descripcion","nivel","tipo","categoria","material",60,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion],"foo://example.com:9042/over/there?name=ferret#nose","1-1-2023")
     @recurso_medio = RecursosEducativos::DigitalesAbiertos.new(3,"marca","titulo","descripcion","nivel","tipo","categoria","material",60,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion],"foo://example.com:8042/over/there?name=ferret#nose","25-9-2021")
 
   end
@@ -65,6 +65,10 @@ class DigitalesAbiertosTest < Test::Unit::TestCase
     assert_true(@recurso_default < @recurso_comparable)
     assert_false(@recurso_default > @recurso_comparable)
     assert_false(@recurso_default == @recurso_comparable)
+    assert_true(@recurso_default != @recurso_comparable)
+    assert_true(@recurso_default <= @recurso_comparable)
+    assert_false(@recurso_default >= @recurso_comparable)
+
     assert_true(@recurso_default < @recurso_medio && @recurso_medio < @recurso_comparable)
   end
 
