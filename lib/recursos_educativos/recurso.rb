@@ -38,5 +38,8 @@ module RecursosEducativos
     def <=>(other)
       @temporalizacion <=> other.temporalizacion
     end
+    def == (other)
+      @id == other.id 
+    end
   end
 end
