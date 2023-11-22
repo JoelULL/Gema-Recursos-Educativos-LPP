@@ -15,4 +15,15 @@ module RecursosEducativos
   def self.obtener_temporalizacion(recurso)
     return recurso.temporalizacion
   end
+  def obtener_duracion_coleccion(entorno)
+    if entorno.is_a?(RecursosEducativos::EntornoDigital)
+      duracion = 0
+      for recurso in entorno.coleccion
+        duracion += recurso.temporalizacion
+      end
+      return duracion
+    elsif
+      false
+    end
+  end
 end
