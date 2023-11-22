@@ -71,5 +71,4 @@ class DigitalesAbiertosTest < Test::Unit::TestCase
 
     assert_true(@recurso_default < @recurso_medio && @recurso_medio < @recurso_comparable)
   end
-
 end

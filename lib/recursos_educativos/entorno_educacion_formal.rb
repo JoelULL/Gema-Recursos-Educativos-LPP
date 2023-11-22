@@ -6,7 +6,10 @@ module RecursosEducativos
       @numero_niveles = numero_niveles
     end
     def to_s
-      nombres_recursos = coleccion.map { |recurso| recurso.titulo }
+      nombres_recursos = []
+      for recurso in coleccion
+        nombres_recursos << recurso.titulo
+      end
       "- Id :#{@id_code} - nombre: #{@nombre} -categoria: #{@categoria} -coleccion:#{nombres_recursos.join(', ')},#{@numero_niveles}"
     end
   end
