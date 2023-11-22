@@ -15,6 +15,7 @@ module RecursosEducativos
   def self.obtener_temporalizacion(recurso)
     return recurso.temporalizacion
   end
+
   def self.obtener_duracion_coleccion(entorno)
     if entorno.is_a?(RecursosEducativos::EntornoDigital)
       duracion = 0
@@ -22,6 +23,28 @@ module RecursosEducativos
         duracion += recurso.temporalizacion
       end
       return duracion
+    elsif
+      false
+    end
+  end
+
+  def self.inclusion_recursos_coleccion(entorno, recursos)
+    correct_classes = true
+    for recurso in recursos
+      if !recurso.is_a?(RecursosEducativos::Recurso)
+        correct_classes = false
+      end
+    end
+
+    if entorno.is_a?(RecursosEducativos::EntornoDigital) && correct_classes
+      recursos_unidos = entorno.coleccion | recursos
+      if entorno.instance_of?(RecursosEducativos::EntornoDigital)
+        coleccion_actualizada = RecursosEducativos::EntornoDigital.new(entorno.id_code, entorno.nombre, entorno.categoria, recursos_unidos)
+      elsif entorno.instance_of?(RecursosEducativos::EntornoEducacionFormal)
+        coleccion_actualizada = RecursosEducativos::EntornoEducacionFormal.new(entorno.id_code, entorno.nombre, entorno.categoria, recursos_unidos, entorno.numero_niveles)
+      elsif entorno.instance_of?(RecursosEducativos::EntornoEducacionInformal)
+        coleccion_actualizada = RecursosEducativos::EntornoEducacionFormal.new(entorno.id_code, entorno.nombre, entorno.categoria, recursos_unidos, entorno.precio)
+     end      
     elsif
       false
     end
