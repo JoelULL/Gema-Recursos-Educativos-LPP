@@ -48,7 +48,7 @@ class DigitalesAbiertosTest < Test::Unit::TestCase
 
   end
   def test_herencia_hija
-    assert_equal([RecursosEducativos::DigitalesAbiertos, RecursosEducativos::Recurso, Comparable, Object, Kernel, BasicObject],RecursosEducativos::DigitalesAbiertos.herencia_de_clase)
+    assert_equal([RecursosEducativos::DigitalesAbiertos, RecursosEducativos::Recurso, Enumerable, Comparable, Object, Kernel, BasicObject],RecursosEducativos::DigitalesAbiertos.herencia_de_clase)
     assert_instance_of(RecursosEducativos::DigitalesAbiertos,@recurso_default)
     assert_kind_of(Object,RecursosEducativos::DigitalesAbiertos)
     assert_kind_of(Class,RecursosEducativos::DigitalesAbiertos)
@@ -70,4 +70,20 @@ class DigitalesAbiertosTest < Test::Unit::TestCase
     assert_false(@recurso_default >= @recurso_comparable)
     assert_true(@recurso_default < @recurso_medio && @recurso_medio < @recurso_comparable)
   end
+  def test_enumeracion_digitales_abiertos
+    assert_equal(60,@recurso_default.max)
+    assert_equal(1,@recurso_default.min)
+    assert_equal([1,60],@recurso_default.sort)
+    assert(@recurso_default.include?(1))
+    assert_equal([1,60],@recurso_default.take(2))
+    assert_equal([60],@recurso_default.drop(1))
+
+    result_each = []
+    @recurso_default.each { |element| result_each << element * 2 }
+    assert_equal([2, 120], result_each)
+
+    result_map = @recurso_default.map { |element| element.to_s }
+    assert_equal(['1', '60'], result_map)
+  end
+
 end
