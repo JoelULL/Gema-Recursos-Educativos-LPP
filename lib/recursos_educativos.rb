@@ -24,29 +24,31 @@ module RecursosEducativos
       end
       return duracion
     elsif
-      false
+      nil
     end
   end
 
   def self.inclusion_recursos_coleccion(entorno, recursos)
-    correct_classes = true
+    correct_classes = false
     for recurso in recursos
-      if !recurso.is_a?(RecursosEducativos::Recurso)
-        correct_classes = false
+      if recurso.is_a?(RecursosEducativos::Recurso)
+        correct_classes = true
       end
     end
-
     if entorno.is_a?(RecursosEducativos::EntornoDigital) && correct_classes
       recursos_unidos = entorno.coleccion | recursos
       if entorno.instance_of?(RecursosEducativos::EntornoDigital)
         coleccion_actualizada = RecursosEducativos::EntornoDigital.new(entorno.id_code, entorno.nombre, entorno.categoria, recursos_unidos)
+        return coleccion_actualizada
       elsif entorno.instance_of?(RecursosEducativos::EntornoEducacionFormal)
         coleccion_actualizada = RecursosEducativos::EntornoEducacionFormal.new(entorno.id_code, entorno.nombre, entorno.categoria, recursos_unidos, entorno.numero_niveles)
+        return coleccion_actualizada
       elsif entorno.instance_of?(RecursosEducativos::EntornoEducacionInformal)
-        coleccion_actualizada = RecursosEducativos::EntornoEducacionFormal.new(entorno.id_code, entorno.nombre, entorno.categoria, recursos_unidos, entorno.precio)
+        coleccion_actualizada = RecursosEducativos::EntornoEducacionInformal.new(entorno.id_code, entorno.nombre, entorno.categoria, recursos_unidos, entorno.precio)
+        return coleccion_actualizada
      end      
     elsif
-      false
+      nil
     end
   end
 end
