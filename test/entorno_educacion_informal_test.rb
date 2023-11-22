@@ -46,5 +46,11 @@ class EntornoEducacionInformalTest < Test::Unit::TestCase
     assert_kind_of(BasicObject,RecursosEducativos::EntornoEducacionFormal)
   end
 
+   def test_duracion_estimada
+    result = RecursosEducativos.obtener_duracion_coleccion(@entorno_default)
+    assert_equal(180,result)
+  end
+
+
 
 end

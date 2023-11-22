@@ -49,4 +49,8 @@ class EntornoDigitalTest < Test::Unit::TestCase
     assert_kind_of(Module,RecursosEducativos::EntornoDigital)
     assert_kind_of(BasicObject,RecursosEducativos::EntornoDigital)
   end
+  def test_duracion_estimada
+    result = RecursosEducativos.obtener_duracion_coleccion(@entorno_default)
+    assert_equal(180,result)
+  end
 end
