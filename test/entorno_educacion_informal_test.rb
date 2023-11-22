@@ -24,4 +24,8 @@ class EntornoEducacionInformalTest < Test::Unit::TestCase
     assert_equal([@recurso_1,@recurso_2,@recurso_3],@entorno_default.coleccion)
     assert_equal(30,@entorno_default.numero_niveles)
   end
+    def test_to_s_formal
+    assert_equal("- Id :1 - nombre: nombre -categoria: taller -coleccion:titulo1, titulo2, titulo3,30",@entorno_default.to_s)
+  end
+
 end
