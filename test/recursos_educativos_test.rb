@@ -19,6 +19,7 @@ class RecursosEducativosTest < Test::Unit::TestCase
      @recurso_default = RecursosEducativos::Recurso.new(1,"marca","titulo","descripcion","nivel","tipo","categoria","material",60,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion])
      @recurso_comparable = RecursosEducativos::Recurso.new(2,"marca","titulo","descripcion","nivel","tipo","categoria","material",70,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion])
     @recurso_medio = RecursosEducativos::Recurso.new(3,"marca","titulo","descripcion","nivel","tipo","categoria","material",65,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion])
+    @conjunto_enumerable = [@recurso_default,@recurso_comparable, @recurso_medio]
   end
 
   def test_getters
@@ -102,6 +103,9 @@ class RecursosEducativosTest < Test::Unit::TestCase
 
     result_map = @recurso_default.map { |element| element.to_s }
     assert_equal(['1', '60'], result_map)
+
+    #añadir pruebas con array 
+
   end  
 end
 
