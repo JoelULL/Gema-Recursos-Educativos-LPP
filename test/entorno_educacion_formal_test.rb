@@ -15,7 +15,6 @@ class EntornoEducacionFormalTest < Test::Unit::TestCase
     @entorno_default = RecursosEducativos::EntornoEducacionFormal.new(1,"nombre",:taller,[@recurso_1,@recurso_2,@recurso_3],3)
     @entorno_nivel = RecursosEducativos::EntornoEducacionFormal.new(1,"nombre",:taller,[@recurso_2,@recurso_3],2)
     @entorno_nivel2 =RecursosEducativos::EntornoEducacionFormal.new(1,"nombre",:taller,[@recurso_1,@recurso_4],1)
-    @entorno_actualizado = RecursosEducativos.inclusion_recursos_coleccion(@entorno_default, [@recurso_4])
   end
 
   def test_getters_clase_formal
@@ -34,6 +33,7 @@ class EntornoEducacionFormalTest < Test::Unit::TestCase
     assert_kind_of(BasicObject,RecursosEducativos::EntornoEducacionFormal)
   end
 
+  #metodo polimorfico
   def test_to_s_formal
     assert_equal("- Id :1 - nombre: nombre -categoria: taller -coleccion:titulo1, titulo2, titulo3,3",@entorno_default.to_s)
   end
@@ -52,7 +52,9 @@ class EntornoEducacionFormalTest < Test::Unit::TestCase
     result = RecursosEducativos.obtener_duracion_coleccion(@entorno_default)
     assert_equal(180,result)
   end
+  #metodo polimorfico
   def test_inlcusion_recursos_formal
+        @entorno_actualizado = RecursosEducativos.inclusion_recursos_coleccion(@entorno_default, [@recurso_4])
     assert_instance_of(RecursosEducativos::EntornoEducacionFormal, @entorno_actualizado)
     assert_equal("- Id :1 - nombre: nombre -categoria: taller -coleccion:titulo1, titulo2, titulo3, titulo4,3",@entorno_actualizado.to_s)
   end

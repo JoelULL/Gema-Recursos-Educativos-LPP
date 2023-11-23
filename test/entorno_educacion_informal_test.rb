@@ -15,8 +15,6 @@ class EntornoEducacionInformalTest < Test::Unit::TestCase
     @entorno_default = RecursosEducativos::EntornoEducacionInformal.new(1,"nombre",:taller,[@recurso_1,@recurso_2,@recurso_3],30.0)
     @entorno_nivel = RecursosEducativos::EntornoEducacionInformal.new(1,"nombre",:taller,[@recurso_2,@recurso_3],20.0)
     @entorno_nivel2 =RecursosEducativos::EntornoEducacionInformal.new(1,"nombre",:taller,[@recurso_1,@recurso_4],10.0)
-
-    @entorno_actualizado = RecursosEducativos.inclusion_recursos_coleccion(@entorno_default, [@recurso_4])
   end
 
   def test_getters_clase_informal
@@ -26,6 +24,7 @@ class EntornoEducacionInformalTest < Test::Unit::TestCase
     assert_equal([@recurso_1,@recurso_2,@recurso_3],@entorno_default.coleccion)
     assert_equal(30.0,@entorno_default.precio)
   end
+    #metodo polimorfico
     def test_to_s_informal
       assert_equal("- Id :1 - nombre: nombre -categoria: taller -coleccion:titulo1, titulo2, titulo3,30.0",@entorno_default.to_s)
   end
@@ -53,7 +52,9 @@ class EntornoEducacionInformalTest < Test::Unit::TestCase
     assert_equal(180,result)
   end
 
+   # metodo polimorfico
   def test_inlcusion_recursos
+    @entorno_actualizado = RecursosEducativos.inclusion_recursos_coleccion(@entorno_default, [@recurso_4])
    assert_instance_of(RecursosEducativos::EntornoEducacionInformal, @entorno_actualizado)
     assert_equal("- Id :1 - nombre: nombre -categoria: taller -coleccion:titulo1, titulo2, titulo3, titulo4,30.0",@entorno_actualizado.to_s)
   end
