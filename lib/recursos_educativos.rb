@@ -13,7 +13,11 @@ module RecursosEducativos
   # Your code goes here...
 #la siguiente funcion recibe un objeto del mismo espacio de nombres y si devuelve el valor del atributo temporalizacion del objeto (recurso).
   def self.obtener_temporalizacion(recurso)
-    return recurso.temporalizacion
+    if recurso.is_a?(RecursosEducativos::Recurso)
+      return recurso.temporalizacion
+    elsif
+      nil
+    end
   end
 
   def self.obtener_duracion_coleccion(entorno)
