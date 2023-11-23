@@ -7,8 +7,8 @@ class DigitalesAbiertosTest < Test::Unit::TestCase
   def setup
     RecursosEducativos::Recurso.class_variable_set(:@@numero_de_recursos,0)
     @recurso_default = RecursosEducativos::DigitalesAbiertos.new(1,"marca","titulo","descripcion","nivel","tipo","categoria","material",60,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion],"foo://example.com:8042/over/there?name=ferret#nose","9-12-2012")
-    @recurso_comparable = RecursosEducativos::DigitalesAbiertos.new(2,"marca","titulo","descripcion","nivel","tipo","categoria","material",60,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion],"foo://example.com:9042/over/there?name=ferret#nose","1-1-2023")
-    @recurso_medio = RecursosEducativos::DigitalesAbiertos.new(3,"marca","titulo","descripcion","nivel","tipo","categoria","material",60,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion],"foo://example.com:8042/over/there?name=ferret#nose","25-9-2021")
+    @recurso_comparable = RecursosEducativos::DigitalesAbiertos.new(2,"marca","titulo","descripcion","nivel","tipo","categoria","material",70,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion],"foo://example.com:9042/over/there?name=ferret#nose","1-1-2023")
+    @recurso_medio = RecursosEducativos::DigitalesAbiertos.new(3,"marca","titulo","descripcion","nivel","tipo","categoria","material",65,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion],"foo://example.com:8042/over/there?name=ferret#nose","25-9-2021")
 
   end
   def test_getters_clase
@@ -85,5 +85,11 @@ class DigitalesAbiertosTest < Test::Unit::TestCase
     result_map = @recurso_default.map { |element| element.to_s }
     assert_equal(['1', '60'], result_map)
   end
-
+    def test_enumeracion_digitales_abiertos_array
+    @array_recursos = [@recurso_default, @recurso_medio, @recurso_comparable]
+    assert_equal(70,@array_recursos.max.temporalizacion)
+    assert_equal(60,@array_recursos.min.temporalizacion)
+    sort_recursos = @array_recursos.sort_by(&:id)
+    assert_equal([1,2,3],sort_recursos.map(&:id))
+  end
 end
