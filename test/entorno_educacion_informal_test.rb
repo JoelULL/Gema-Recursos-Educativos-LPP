@@ -41,10 +41,10 @@ class EntornoEducacionInformalTest < Test::Unit::TestCase
     def test_herencia_entorno_digital
     assert_instance_of(RecursosEducativos::EntornoEducacionInformal,@entorno_default)
     assert_true(@entorno_default.is_a?(RecursosEducativos::EntornoDigital))
-    assert_kind_of(Object,RecursosEducativos::EntornoEducacionFormal)
-    assert_kind_of(Class,RecursosEducativos::EntornoEducacionFormal)
-    assert_kind_of(Module,RecursosEducativos::EntornoEducacionFormal)
-    assert_kind_of(BasicObject,RecursosEducativos::EntornoEducacionFormal)
+    assert_kind_of(Object,RecursosEducativos::EntornoEducacionInformal)
+    assert_kind_of(Class,RecursosEducativos::EntornoEducacionInformal)
+    assert_kind_of(Module,RecursosEducativos::EntornoEducacionInformal)
+    assert_kind_of(BasicObject,RecursosEducativos::EntornoEducacionInformal)
   end
 
    def test_duracion_estimada
