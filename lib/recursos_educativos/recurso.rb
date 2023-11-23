@@ -42,6 +42,7 @@ module RecursosEducativos
     def == (other)
       @id == other.id 
     end
+    #Mediante la inclusion del modulo enumerable podremos iterar y realizar las operaciones de este modulo sobre el objeto. Añadiendo la funcion each escribimos los atributos que se desea tener en cuenta para las operaciones del modulo. En este caso seran id y temporalizacion. Gracias a la herencia la clase hija digitales abiertos tambien sera enumerable.
     def each
       yield @id
       yield @temporalizacion

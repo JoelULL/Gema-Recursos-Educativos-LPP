@@ -10,7 +10,7 @@ require "recursos_educativos/entorno_educacion_informal"
 #Modulo principal de la gema que representa Recursos educativos.
 module RecursosEducativos
   class Error < StandardError; end
-  # Your code goes here...
+
 #la siguiente funcion recibe un objeto del mismo espacio de nombres y si devuelve el valor del atributo temporalizacion del objeto (recurso).
   def self.obtener_temporalizacion(recurso)
     if recurso.is_a?(RecursosEducativos::Recurso)
@@ -19,7 +19,7 @@ module RecursosEducativos
       nil
     end
   end
-
+  #En esta funcion podemos obtener la duracion total de una coleccion de recursos perteneciente a un entorno digital. Recorriendo los recursos de la coleccion suma en una variable la temporalizacion de cada uno devolviendo la suma en minutos de todos ellos.  
   def self.obtener_duracion_coleccion(entorno)
     if entorno.is_a?(RecursosEducativos::EntornoDigital)
       duracion = 0
@@ -31,7 +31,8 @@ module RecursosEducativos
       nil
     end
   end
-
+  #En este metodo polimorfico se obtiene una nueva coleccion con unos recursos nuevos añadidas a su coleccion. Se le pasa el entorno al que iran esos nuevos recursos y los recursos que se desean añadir.
+  #Es polimorfico porque en funcion del tipo de entorno que se reciba el comportamiento difiere al crear el nuevo objeto puesto que cada uno de ellos tiene atributos diferentes.
   def self.inclusion_recursos_coleccion(entorno, recursos)
     correct_classes = false
     for recurso in recursos
