@@ -2,7 +2,7 @@ require "test_helper"
 class EntornoEducacionFormalTest < Test::Unit::TestCase
   def test_clase_vacia
     assert_nothing_raised do
-      RecursosEducativos::EntornoEducacionFormal.new(nil,nil,nil,nil,nil)
+      RecursosEducativos::EntornoEducacionFormal.new(nil,nil,nil,nil,nil,nil)
     end
   end
   def setup
@@ -12,9 +12,9 @@ class EntornoEducacionFormalTest < Test::Unit::TestCase
     @recurso_3 = RecursosEducativos::Recurso.new(3,"marca","titulo3","descripcion",RecursosEducativos::INTERMEDIATE,"tipo","categoria","material",60,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion])
     @recurso_4 = RecursosEducativos::Recurso.new(4,"marca","titulo4","descripcion",RecursosEducativos::BEGINNER,"tipo","categoria","material",60,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion])
 
-    @entorno_default = RecursosEducativos::EntornoEducacionFormal.new(1,"nombre",:taller,[@recurso_1,@recurso_2,@recurso_3],3)
-    @entorno_nivel = RecursosEducativos::EntornoEducacionFormal.new(1,"nombre",:taller,[@recurso_2,@recurso_3],2)
-    @entorno_nivel2 =RecursosEducativos::EntornoEducacionFormal.new(1,"nombre",:taller,[@recurso_1,@recurso_4],1)
+    @entorno_default = RecursosEducativos::EntornoEducacionFormal.new(1,"nombre",:taller,[@recurso_1,@recurso_2,@recurso_3],3,nil)
+    @entorno_nivel = RecursosEducativos::EntornoEducacionFormal.new(1,"nombre",:taller,[@recurso_2,@recurso_3],2,nil)
+    @entorno_nivel2 =RecursosEducativos::EntornoEducacionFormal.new(1,"nombre",:taller,[@recurso_1,@recurso_4],1,nil)
   end
 
   def test_getters_clase_formal

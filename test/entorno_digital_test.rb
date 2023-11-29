@@ -1,7 +1,7 @@
 require "test_helper"
 class EntornoDigitalTest < Test::Unit::TestCase
   def test_class_empty
-    @default = RecursosEducativos::EntornoDigital.new(1,"nombre",:taller,[])
+    @default = RecursosEducativos::EntornoDigital.new(1,"nombre",:taller,[],nil)
     assert_instance_of(RecursosEducativos::EntornoDigital,@default)
   end
   def setup
@@ -11,9 +11,9 @@ class EntornoDigitalTest < Test::Unit::TestCase
     @recurso_3 = RecursosEducativos::Recurso.new(3,"marca","titulo3","descripcion",RecursosEducativos::INTERMEDIATE,"tipo","categoria","material",60,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion])
     @recurso_4 = RecursosEducativos::Recurso.new(4,"marca","titulo4","descripcion",RecursosEducativos::BEGINNER,"tipo","categoria","material",60,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion])
 
-    @entorno_default = RecursosEducativos::EntornoDigital.new(1,"nombre",:taller,[@recurso_1,@recurso_2,@recurso_3])
-    @entorno_nivel = RecursosEducativos::EntornoDigital.new(1,"nombre",:taller,[@recurso_2,@recurso_3])
-    @entorno_nivel2 =RecursosEducativos::EntornoDigital.new(1,"nombre",:taller,[@recurso_1,@recurso_4])
+    @entorno_default = RecursosEducativos::EntornoDigital.new(1,"nombre",:taller,[@recurso_1,@recurso_2,@recurso_3],nil)
+    @entorno_nivel = RecursosEducativos::EntornoDigital.new(1,"nombre",:taller,[@recurso_2,@recurso_3],nil)
+    @entorno_nivel2 =RecursosEducativos::EntornoDigital.new(1,"nombre",:taller,[@recurso_1,@recurso_4],nil)
   end
 
   def test_getters
