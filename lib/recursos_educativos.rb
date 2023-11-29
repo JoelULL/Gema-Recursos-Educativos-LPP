@@ -43,13 +43,13 @@ module RecursosEducativos
     if entorno.is_a?(RecursosEducativos::EntornoDigital) && correct_classes
       recursos_unidos = entorno.coleccion | recursos
       if entorno.instance_of?(RecursosEducativos::EntornoDigital)
-        coleccion_actualizada = RecursosEducativos::EntornoDigital.new(entorno.id_code, entorno.nombre, entorno.categoria, recursos_unidos)
+        coleccion_actualizada = RecursosEducativos::EntornoDigital.new(entorno.id_code, entorno.nombre, entorno.categoria, recursos_unidos, entorno.lori)
         return coleccion_actualizada
       elsif entorno.instance_of?(RecursosEducativos::EntornoEducacionFormal)
-        coleccion_actualizada = RecursosEducativos::EntornoEducacionFormal.new(entorno.id_code, entorno.nombre, entorno.categoria, recursos_unidos, entorno.numero_niveles)
+        coleccion_actualizada = RecursosEducativos::EntornoEducacionFormal.new(entorno.id_code, entorno.nombre, entorno.categoria, recursos_unidos, entorno.numero_niveles,entorno.lori)
         return coleccion_actualizada
       elsif entorno.instance_of?(RecursosEducativos::EntornoEducacionInformal)
-        coleccion_actualizada = RecursosEducativos::EntornoEducacionInformal.new(entorno.id_code, entorno.nombre, entorno.categoria, recursos_unidos, entorno.precio)
+        coleccion_actualizada = RecursosEducativos::EntornoEducacionInformal.new(entorno.id_code, entorno.nombre, entorno.categoria, recursos_unidos, entorno.precio,entorno.lori)
         return coleccion_actualizada
      end      
     elsif
