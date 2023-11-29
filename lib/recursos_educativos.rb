@@ -56,4 +56,12 @@ module RecursosEducativos
       nil
     end
   end
+  def RecursosEducativos::aplicar_lori_recurso_digital_abierto(recurso, lori_nuevo)
+    if (!recurso.instance_of?(RecursosEducativos::DigitalesAbiertos))
+      return nil
+    else
+      recurso_actualizado = RecursosEducativos::DigitalesAbiertos.new(recurso.id, recurso.marca, recurso.titulo, recurso.descripcion, recurso.nivel_experiencia, recurso.tipo_actividad, recurso.categoria, recurso.material, recurso.temporalizacion, recurso.concepto, recurso.uri, recurso.fecha_creacion, lori_nuevo)
+      return recurso_actualizado
+    end
+  end
 end
