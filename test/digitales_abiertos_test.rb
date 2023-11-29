@@ -9,6 +9,8 @@ class DigitalesAbiertosTest < Test::Unit::TestCase
     @recurso_default = RecursosEducativos::DigitalesAbiertos.new(1,"marca","titulo","descripcion","nivel","tipo","categoria","material",60,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion],"foo://example.com:8042/over/there?name=ferret#nose","9-12-2012",nil)
     @recurso_comparable = RecursosEducativos::DigitalesAbiertos.new(2,"marca","titulo","descripcion","nivel","tipo","categoria","material",70,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion],"foo://example.com:9042/over/there?name=ferret#nose","1-1-2023",nil)
     @recurso_medio = RecursosEducativos::DigitalesAbiertos.new(3,"marca","titulo","descripcion","nivel","tipo","categoria","material",65,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion],"foo://example.com:8042/over/there?name=ferret#nose","25-9-2021",nil)
+    @lori1 = {RecursosEducativos::CALIDAD_CONTENIDO => 1,RecursosEducativos::OBJETIVOS_APRENDIZAJE => 1, RecursosEducativos::MOTIVACION => 1, RecursosEducativos::DISEÑO_PRESENTACION => 1, RecursosEducativos::USABILIDAD => 1,RecursosEducativos::ACCESIBILIDAD => 1,RecursosEducativos::REHUSABILIDAD => 1,RecursosEducativos::VALOR_EDUCATIVO => 1}
+    @recurso_lori = RecursosEducativos::DigitalesAbiertos.new(4,"marca","titulo","descripcion","nivel","tipo","categoria","material",65,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion],"foo://example.com:8042/over/there?name=ferret#nose","25-9-2021",nil)
 
   end
   def test_getters_clase
@@ -58,7 +60,7 @@ class DigitalesAbiertosTest < Test::Unit::TestCase
   end
 
   def test_contar_instancia_hija
-    assert_equal(3,RecursosEducativos::DigitalesAbiertos.count)
+    assert_equal(4,RecursosEducativos::DigitalesAbiertos.count)
   end
 
   def test_comparador_digitales_abiertos
@@ -91,5 +93,9 @@ class DigitalesAbiertosTest < Test::Unit::TestCase
     assert_equal(60,@array_recursos.min.temporalizacion)
     sort_recursos = @array_recursos.sort_by(&:id)
     assert_equal([1,2,3],sort_recursos.map(&:id))
+  end
+  def test_aplicar_lori
+    test_lori = RecursosEducativos::aplicar_lori_recurso_digital_abierto(@recurso_lori, @lori1)
+    assert_equal({:accesibilidad=>1, :calidad_contenido=>1, :diseño_presentacion=>1, :motivacion=>1, :objetivos_aprendizaje=>1, :rehusabilidad=>1, :usabilidad=>1, :valor_educativo=>1},test_lori.lori)
   end
 end
