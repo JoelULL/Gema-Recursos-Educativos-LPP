@@ -14,6 +14,8 @@ class EntornoDigitalTest < Test::Unit::TestCase
     @entorno_default = RecursosEducativos::EntornoDigital.new(1,"nombre",:taller,[@recurso_1,@recurso_2,@recurso_3],nil)
     @entorno_nivel = RecursosEducativos::EntornoDigital.new(1,"nombre",:taller,[@recurso_2,@recurso_3],nil)
     @entorno_nivel2 =RecursosEducativos::EntornoDigital.new(1,"nombre",:taller,[@recurso_1,@recurso_4],nil)
+    @lori1 = {RecursosEducativos::CALIDAD_CONTENIDO => 1,RecursosEducativos::OBJETIVOS_APRENDIZAJE => 1, RecursosEducativos::MOTIVACION => 1, RecursosEducativos::DISEÑO_PRESENTACION => 1, RecursosEducativos::USABILIDAD => 1,RecursosEducativos::ACCESIBILIDAD => 1,RecursosEducativos::REHUSABILIDAD => 1,RecursosEducativos::VALOR_EDUCATIVO => 1}
+    @entorno_lori = RecursosEducativos::EntornoDigital.new(2,"nombre",:taller,[@recurso_1,@recurso_4],nil)
   end
 
   def test_getters
@@ -58,5 +60,9 @@ class EntornoDigitalTest < Test::Unit::TestCase
     @entorno_actualizado = RecursosEducativos.inclusion_recursos_coleccion(@entorno_default, [@recurso_4])       
     assert_instance_of(RecursosEducativos::EntornoDigital, @entorno_actualizado)
     assert_equal("- Id :1 - nombre: nombre -categoria: taller -coleccion:titulo1, titulo2, titulo3, titulo4", @entorno_actualizado.to_s)
+  end
+  def test_aplicar_lori_entorno_digital
+    test_lori = RecursosEducativos::aplicar_lori_entorno_digital(@entorno_lori, @lori1)
+    assert_equal({:accesibilidad=>1, :calidad_contenido=>1, :diseño_presentacion=>1, :motivacion=>1, :objetivos_aprendizaje=>1, :rehusabilidad=>1, :usabilidad=>1, :valor_educativo=>1}, test_lori.lori)
   end
 end
