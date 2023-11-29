@@ -1,11 +1,12 @@
 module RecursosEducativos
   #Clase Digitales Abiertos que hereda de recursos. Se crea esta clase para representar un tipo de recurso. Cuenta con dos atributos nuevos que son el uri y la fecha de creacion. Con esta clase aprendemos el concepto de herencia en Ruby.
   class DigitalesAbiertos < Recurso
-    attr_reader :uri, :fecha_creacion
-    def initialize(id, marca, titulo, descripcion, nivel_experiencia,tipo_actividad, categoria, material, temporalizacion, concepto, uri, fecha_creacion)
+    attr_reader :uri, :fecha_creacion, :lori
+    def initialize(id, marca, titulo, descripcion, nivel_experiencia,tipo_actividad, categoria, material, temporalizacion, concepto, uri, fecha_creacion, lori)
           super(id, marca, titulo, descripcion, nivel_experiencia,tipo_actividad, categoria, material, temporalizacion, concepto)
     @uri = uri
     @fecha_creacion = fecha_creacion
+    @lori = lori
     end
     def to_s
       array_string = @concepto.map{|simbolo| simbolo.to_s}
