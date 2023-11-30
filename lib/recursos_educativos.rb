@@ -78,4 +78,22 @@ module RecursosEducativos
       nil
     end
   end
+
+  def RecursosEducativos::seleccion_recurso(recursos)
+    recursos.group_by { |recurso| [recurso.fecha_creacion, recurso.temporalizacion] }
+      .transform_values{|lista_recursos| lista_recursos.max_by{ |rec| rec.lori[RecursosEducativos::VALOR_EDUCATIVO]}}
+      .values
+  end
+
+  def RecursosEducativos::seleccion_entorno(entornos)
+  all_objects = entornos.all? { |entorno| entorno.is_a?(RecursosEducativos::EntornoDigital) }
+    if all_objects
+      entorno_seleccionado = entornos.max_by do |entorno|
+        [entorno.coleccion.size, entorno.lori[RecursosEducativos::CALIDAD_CONTENIDO]]
+      end
+      entorno_seleccionado
+    else
+      nil
+  end
+  end
 end
