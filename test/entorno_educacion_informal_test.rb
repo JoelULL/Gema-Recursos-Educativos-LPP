@@ -13,7 +13,7 @@ class EntornoEducacionInformalTest < Test::Unit::TestCase
     @recurso_4 = RecursosEducativos::Recurso.new(4,"marca","titulo4","descripcion",RecursosEducativos::BEGINNER,"tipo","categoria","material",60,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion])
 
     @entorno_default = RecursosEducativos::EntornoEducacionInformal.new(1,"nombre",:taller,[@recurso_1,@recurso_2,@recurso_3],30.0,nil)
-    @entorno_nivel = RecursosEducativos::EntornoEducacionInformal.new(1,"nombre",:taller,[@recurso_2,@recurso_3],20.0,nil)
+    @entorno_nivel = RecursosEducativos::EntornoEducacionInformal.new(20,"nombre",:taller,[@recurso_2,@recurso_3],20.0,nil)
     @entorno_nivel2 =RecursosEducativos::EntornoEducacionInformal.new(1,"nombre",:taller,[@recurso_1,@recurso_4],10.0,nil)
     @lori1 = {RecursosEducativos::CALIDAD_CONTENIDO => 1,RecursosEducativos::OBJETIVOS_APRENDIZAJE => 1, RecursosEducativos::MOTIVACION => 1, RecursosEducativos::DISEÑO_PRESENTACION => 1, RecursosEducativos::USABILIDAD => 1,RecursosEducativos::ACCESIBILIDAD => 1,RecursosEducativos::REHUSABILIDAD => 1,RecursosEducativos::VALOR_EDUCATIVO => 1}
     @entorno_lori_getter = RecursosEducativos::EntornoEducacionInformal.new(17,"nombre",:taller,[@recurso_1,@recurso_2,@recurso_3],30.0,@lori1)
@@ -63,5 +63,26 @@ class EntornoEducacionInformalTest < Test::Unit::TestCase
     assert_equal("- Id :1 - nombre: nombre -categoria: taller -coleccion:titulo1, titulo2, titulo3, titulo4,30.0",@entorno_actualizado.to_s)
   end
 
+  #RecursosEducativos::seleccion_entorno
+  def test_seleccion_entorno_informal
+    @lori2 = {RecursosEducativos::CALIDAD_CONTENIDO => 5,RecursosEducativos::OBJETIVOS_APRENDIZAJE => 1, RecursosEducativos::MOTIVACION => 1, RecursosEducativos::DISEÑO_PRESENTACION => 1, RecursosEducativos::USABILIDAD => 1,RecursosEducativos::ACCESIBILIDAD => 1,RecursosEducativos::REHUSABILIDAD => 1,RecursosEducativos::VALOR_EDUCATIVO => 1}
 
+    @lori3 = {RecursosEducativos::CALIDAD_CONTENIDO => 3,RecursosEducativos::OBJETIVOS_APRENDIZAJE => 1, RecursosEducativos::MOTIVACION => 1, RecursosEducativos::DISEÑO_PRESENTACION => 1, RecursosEducativos::USABILIDAD => 1,RecursosEducativos::ACCESIBILIDAD => 1,RecursosEducativos::REHUSABILIDAD => 1,RecursosEducativos::VALOR_EDUCATIVO => 1}
+
+    #entorno con mayor calidad
+    nuevo1 = RecursosEducativos::aplicar_lori_entorno_digital(@entorno_default, @lori2)
+    #entorno con menor calidad 
+    nuevo2 = RecursosEducativos::aplicar_lori_entorno_digital(@entorno_default, @lori1)
+  
+    mismo_numero_rec = RecursosEducativos::seleccion_entorno([nuevo1,nuevo2])
+    assert_equal(5, mismo_numero_rec.lori[RecursosEducativos::CALIDAD_CONTENIDO])
+    
+    #entorno con mayor numero de recursos, menor calidad
+    nuevo3 = RecursosEducativos::aplicar_lori_entorno_digital(@entorno_default, @lori1)
+    #entorno con menor numero de recursos, mayor calidad
+    nuevo4 = RecursosEducativos::aplicar_lori_entorno_digital(@entorno_nivel, @lori2)
+
+    dif_num_rec = RecursosEducativos::seleccion_entorno([nuevo1,nuevo2])
+    assert_equal(1, dif_num_rec.id_code)
+  end
 end
