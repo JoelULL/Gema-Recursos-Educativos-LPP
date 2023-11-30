@@ -56,6 +56,7 @@ module RecursosEducativos
       nil
     end
   end
+  #Funcion que siguiendo el paradigma de programacion funcional, permite aplicar el instrumento LORI a un recurso digital abierto. Primero se comprueba que efectivamente el recurso al que se le quiere aplicar el LORI sea un recurso digital abierto con instance_of?. Como en la programacion funcional las funciones deben ser puras y no deben modificar objetos, se crea un nuevo objeto con los atributos del que se pasa como parametro y se le añade el nuevo lori. Esta funcion devolvera el recurso con el lori aplicado.
   def RecursosEducativos::aplicar_lori_recurso_digital_abierto(recurso, lori_nuevo)
     if (!recurso.instance_of?(RecursosEducativos::DigitalesAbiertos))
       return nil
@@ -64,6 +65,7 @@ module RecursosEducativos
       return recurso_actualizado
     end
   end
+  #Siguiendo la misma metodologia e idea que la funcion anterior. Esta funcion permitira aplicar el instrumento LORI a un entorno digital de recursos educativos. Para ello se comprueba primero que sea un entorno digital y luego se procede a crear un nuevo objeto con el lori actualizado que es lo que se devolvera.
   def RecursosEducativos::aplicar_lori_entorno_digital(entorno, lori_nuevo)
       if entorno.instance_of?(RecursosEducativos::EntornoDigital)
         coleccion_actualizada = RecursosEducativos::EntornoDigital.new(entorno.id_code, entorno.nombre, entorno.categoria, entorno.coleccion, lori_nuevo)
@@ -78,13 +80,13 @@ module RecursosEducativos
       nil
     end
   end
-
+  #Funcion que siguiendo el mismo paradigma que las funcions anteriores, (programacion declarativa(funcional)) permite selecionar un recurso que tenga el mayor valor educativo de aquellos que tienen la misma fecha y duracion en minutos.
   def RecursosEducativos::seleccion_recurso(recursos)
     recursos.group_by { |recurso| [recurso.fecha_creacion, recurso.temporalizacion] }
       .transform_values{|lista_recursos| lista_recursos.max_by{ |rec| rec.lori[RecursosEducativos::VALOR_EDUCATIVO]}}
       .values
   end
-
+  #Funcion que sigue el mismo paradigma y metodologia que la anterior. Permite seleccionar el entorno digital de un conjuto de estos que tenga un mayor numero de recursos en su coleccion y/o con mejor calidad de contenido. En caso de que tengan el mismo numero de recursos en la coleccion se escogera aquel con mejor calidad de contenido, si no se eligira aquel con mayor numero de recursos en su coleccion.
   def RecursosEducativos::seleccion_entorno(entornos)
   all_objects = entornos.all? { |entorno| entorno.is_a?(RecursosEducativos::EntornoDigital) }
     if all_objects
