@@ -15,6 +15,8 @@ class EntornoEducacionInformalTest < Test::Unit::TestCase
     @entorno_default = RecursosEducativos::EntornoEducacionInformal.new(1,"nombre",:taller,[@recurso_1,@recurso_2,@recurso_3],30.0,nil)
     @entorno_nivel = RecursosEducativos::EntornoEducacionInformal.new(1,"nombre",:taller,[@recurso_2,@recurso_3],20.0,nil)
     @entorno_nivel2 =RecursosEducativos::EntornoEducacionInformal.new(1,"nombre",:taller,[@recurso_1,@recurso_4],10.0,nil)
+    @lori1 = {RecursosEducativos::CALIDAD_CONTENIDO => 1,RecursosEducativos::OBJETIVOS_APRENDIZAJE => 1, RecursosEducativos::MOTIVACION => 1, RecursosEducativos::DISEÑO_PRESENTACION => 1, RecursosEducativos::USABILIDAD => 1,RecursosEducativos::ACCESIBILIDAD => 1,RecursosEducativos::REHUSABILIDAD => 1,RecursosEducativos::VALOR_EDUCATIVO => 1}
+    @entorno_lori_getter = RecursosEducativos::EntornoEducacionInformal.new(17,"nombre",:taller,[@recurso_1,@recurso_2,@recurso_3],30.0,@lori1)
   end
 
   def test_getters_clase_informal
@@ -23,6 +25,7 @@ class EntornoEducacionInformalTest < Test::Unit::TestCase
     assert_equal(:taller,@entorno_default.categoria)
     assert_equal([@recurso_1,@recurso_2,@recurso_3],@entorno_default.coleccion)
     assert_equal(30.0,@entorno_default.precio)
+    assert_equal({:accesibilidad=>1, :calidad_contenido=>1, :diseño_presentacion=>1, :motivacion=>1, :objetivos_aprendizaje=>1, :rehusabilidad=>1, :usabilidad=>1, :valor_educativo=>1},@entorno_lori_getter.lori)
   end
     #metodo polimorfico
     def test_to_s_informal
@@ -37,6 +40,7 @@ class EntornoEducacionInformalTest < Test::Unit::TestCase
       assert_kind_of(RecursosEducativos::Recurso, recurso)
     end
     assert_kind_of(Float,@entorno_default.precio)
+    assert_kind_of(Hash, @entorno_lori_getter.lori)
   end
     def test_herencia_entorno_digital
     assert_instance_of(RecursosEducativos::EntornoEducacionInformal,@entorno_default)

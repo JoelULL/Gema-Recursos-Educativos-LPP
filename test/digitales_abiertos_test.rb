@@ -11,6 +11,7 @@ class DigitalesAbiertosTest < Test::Unit::TestCase
     @recurso_medio = RecursosEducativos::DigitalesAbiertos.new(3,"marca","titulo","descripcion","nivel","tipo","categoria","material",65,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion],"foo://example.com:8042/over/there?name=ferret#nose","25-9-2021",nil)
     @lori1 = {RecursosEducativos::CALIDAD_CONTENIDO => 1,RecursosEducativos::OBJETIVOS_APRENDIZAJE => 1, RecursosEducativos::MOTIVACION => 1, RecursosEducativos::DISEÑO_PRESENTACION => 1, RecursosEducativos::USABILIDAD => 1,RecursosEducativos::ACCESIBILIDAD => 1,RecursosEducativos::REHUSABILIDAD => 1,RecursosEducativos::VALOR_EDUCATIVO => 1}
     @recurso_lori = RecursosEducativos::DigitalesAbiertos.new(4,"marca","titulo","descripcion","nivel","tipo","categoria","material",65,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion],"foo://example.com:8042/over/there?name=ferret#nose","25-9-2021",nil)
+    @recurso_lori_getter = RecursosEducativos::DigitalesAbiertos.new(4,"marca","titulo","descripcion","nivel","tipo","categoria","material",65,[:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion],"foo://example.com:8042/over/there?name=ferret#nose","25-9-2021",@lori1)
 
   end
   def test_getters_clase
@@ -24,8 +25,11 @@ class DigitalesAbiertosTest < Test::Unit::TestCase
       assert_equal("material",@recurso_default.material)
       assert_equal(60,@recurso_default.temporalizacion)
       assert_equal([:razonamiento, :abstraccion, :descomposicion, :patrones, :algoritmos, :codificacion,:validacion],@recurso_default.concepto)
-    assert_equal("foo://example.com:8042/over/there?name=ferret#nose",@recurso_default.uri)
-    assert_equal("9-12-2012",@recurso_default.fecha_creacion)
+      assert_equal("foo://example.com:8042/over/there?name=ferret#nose",@recurso_default.uri)
+      assert_equal("9-12-2012",@recurso_default.fecha_creacion)
+      ##getter lori
+      assert_equal({:accesibilidad=>1, :calidad_contenido=>1, :diseño_presentacion=>1, :motivacion=>1, :objetivos_aprendizaje=>1, :rehusabilidad=>1, :usabilidad=>1, :valor_educativo=>1},@recurso_lori_getter.lori)
+
   end
     def comprobacion_tipo_digitales_abiertos
       assert_kind_of(Integer,@recurso_default.id)
@@ -43,6 +47,8 @@ class DigitalesAbiertosTest < Test::Unit::TestCase
       end
       assert_kind_of(String,@recurso_default.uri)
       assert_kind_of(String,@recurso_default.fecha_creacion)
+      ##comprobacion de tipo lori
+      assert_kind_of(Hash,@recurso_lori_getter.lori)
   end
 
   def test_to_s
@@ -60,7 +66,7 @@ class DigitalesAbiertosTest < Test::Unit::TestCase
   end
 
   def test_contar_instancia_hija
-    assert_equal(4,RecursosEducativos::DigitalesAbiertos.count)
+    assert_equal(5,RecursosEducativos::DigitalesAbiertos.count)
   end
 
   def test_comparador_digitales_abiertos

@@ -16,13 +16,17 @@ class EntornoDigitalTest < Test::Unit::TestCase
     @entorno_nivel2 =RecursosEducativos::EntornoDigital.new(1,"nombre",:taller,[@recurso_1,@recurso_4],nil)
     @lori1 = {RecursosEducativos::CALIDAD_CONTENIDO => 1,RecursosEducativos::OBJETIVOS_APRENDIZAJE => 1, RecursosEducativos::MOTIVACION => 1, RecursosEducativos::DISEÑO_PRESENTACION => 1, RecursosEducativos::USABILIDAD => 1,RecursosEducativos::ACCESIBILIDAD => 1,RecursosEducativos::REHUSABILIDAD => 1,RecursosEducativos::VALOR_EDUCATIVO => 1}
     @entorno_lori = RecursosEducativos::EntornoDigital.new(2,"nombre",:taller,[@recurso_1,@recurso_4],nil)
+    @entorno_lori_getter = RecursosEducativos::EntornoDigital.new(17,"nombre",:taller,[@recurso_1,@recurso_4],@lori1)
   end
 
   def test_getters
     assert_equal(1,@entorno_default.id_code)
     assert_equal("nombre",@entorno_default.nombre)
     assert_equal(:taller,@entorno_default.categoria)
-    assert_equal([@recurso_1,@recurso_2,@recurso_3],@entorno_default.coleccion) 
+    assert_equal([@recurso_1,@recurso_2,@recurso_3],@entorno_default.coleccion)
+    ##getter lori
+    assert_equal({:accesibilidad=>1, :calidad_contenido=>1, :diseño_presentacion=>1, :motivacion=>1, :objetivos_aprendizaje=>1, :rehusabilidad=>1, :usabilidad=>1, :valor_educativo=>1},@entorno_lori_getter.lori)
+
   end
   def comprobacion_tipos_atributos
     assert_kind_of(Integer,@entorno_default.id_code)
@@ -32,6 +36,7 @@ class EntornoDigitalTest < Test::Unit::TestCase
     @recurso_default.each do |recurso|
       assert_kind_of(RecursosEducativos::Recurso, recurso)
     end
+    assert_kind_of(Hash, @entorno_lori_getter.lori)
   end
   def test_to_s
     assert_equal("- Id :1 - nombre: nombre -categoria: taller -coleccion:titulo1, titulo2, titulo3",@entorno_default.to_s)

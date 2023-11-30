@@ -15,6 +15,8 @@ class EntornoEducacionFormalTest < Test::Unit::TestCase
     @entorno_default = RecursosEducativos::EntornoEducacionFormal.new(1,"nombre",:taller,[@recurso_1,@recurso_2,@recurso_3],3,nil)
     @entorno_nivel = RecursosEducativos::EntornoEducacionFormal.new(1,"nombre",:taller,[@recurso_2,@recurso_3],2,nil)
     @entorno_nivel2 =RecursosEducativos::EntornoEducacionFormal.new(1,"nombre",:taller,[@recurso_1,@recurso_4],1,nil)
+    @lori1 = {RecursosEducativos::CALIDAD_CONTENIDO => 1,RecursosEducativos::OBJETIVOS_APRENDIZAJE => 1, RecursosEducativos::MOTIVACION => 1, RecursosEducativos::DISEÑO_PRESENTACION => 1, RecursosEducativos::USABILIDAD => 1,RecursosEducativos::ACCESIBILIDAD => 1,RecursosEducativos::REHUSABILIDAD => 1,RecursosEducativos::VALOR_EDUCATIVO => 1}
+    @entorno_lori_getter = RecursosEducativos::EntornoEducacionFormal.new(17,"nombre",:taller,[@recurso_1,@recurso_2,@recurso_3],3,@lori1)
   end
 
   def test_getters_clase_formal
@@ -23,6 +25,8 @@ class EntornoEducacionFormalTest < Test::Unit::TestCase
     assert_equal(:taller,@entorno_default.categoria)
     assert_equal([@recurso_1,@recurso_2,@recurso_3],@entorno_default.coleccion)
     assert_equal(3,@entorno_default.numero_niveles)
+    ##getter lori
+    assert_equal({:accesibilidad=>1, :calidad_contenido=>1, :diseño_presentacion=>1, :motivacion=>1, :objetivos_aprendizaje=>1, :rehusabilidad=>1, :usabilidad=>1, :valor_educativo=>1},@entorno_lori_getter.lori)
   end
   def test_herencia_entorno_digital
     assert_instance_of(RecursosEducativos::EntornoEducacionFormal,@entorno_default)
@@ -47,6 +51,7 @@ class EntornoEducacionFormalTest < Test::Unit::TestCase
       assert_kind_of(RecursosEducativos::Recurso, recurso)
     end
     assert_kind_of(Integer,@entorno_default.numero_niveles)
+    assert_kind_of(Hash, @entorno_lori_getter.lori)
   end
   def test_duracion_estimada
     result = RecursosEducativos.obtener_duracion_coleccion(@entorno_default)
