@@ -84,9 +84,10 @@ module RecursosEducativos
   def RecursosEducativos::seleccion_recurso(recursos)
     all_objects = recursos.all? { |recurso| recurso.is_a?(RecursosEducativos::DigitalesAbiertos) }
     if all_objects
-    recursos.group_by { |recurso| [recurso.fecha_creacion, recurso.temporalizacion] }
+    result = recursos.group_by { |recurso| [recurso.fecha_creacion, recurso.temporalizacion] }
       .transform_values{|lista_recursos| lista_recursos.max_by{ |rec| rec.lori[RecursosEducativos::VALOR_EDUCATIVO]}}
       .values
+    return result
     else
       nil
     end
