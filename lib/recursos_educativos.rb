@@ -82,9 +82,14 @@ module RecursosEducativos
   end
   #Funcion que siguiendo el mismo paradigma que las funcions anteriores, (programacion declarativa(funcional)) permite selecionar un recurso que tenga el mayor valor educativo de aquellos que tienen la misma fecha y duracion en minutos.
   def RecursosEducativos::seleccion_recurso(recursos)
+    all_objects = recursos.all? { |recurso| recurso.is_a?(RecursosEducativos::DigitalesAbiertos) }
+    if all_objects
     recursos.group_by { |recurso| [recurso.fecha_creacion, recurso.temporalizacion] }
       .transform_values{|lista_recursos| lista_recursos.max_by{ |rec| rec.lori[RecursosEducativos::VALOR_EDUCATIVO]}}
       .values
+    else
+      nil
+    end
   end
   #Funcion que sigue el mismo paradigma y metodologia que la anterior. Permite seleccionar el entorno digital de un conjuto de estos que tenga un mayor numero de recursos en su coleccion y/o con mejor calidad de contenido. En caso de que tengan el mismo numero de recursos en la coleccion se escogera aquel con mejor calidad de contenido, si no se eligira aquel con mayor numero de recursos en su coleccion.
   def RecursosEducativos::seleccion_entorno(entornos)
