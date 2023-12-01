@@ -88,7 +88,7 @@ class EntornoEducacionInformalTest < Test::Unit::TestCase
     #entorno con menor numero de recursos, mayor calidad
     nuevo4 = RecursosEducativos::aplicar_lori_entorno_digital(@entorno_nivel, @lori2)
 
-    dif_num_rec = RecursosEducativos::seleccion_entorno([nuevo1,nuevo2])
+    dif_num_rec = RecursosEducativos::seleccion_entorno([nuevo3,nuevo4])
     assert_equal(1, dif_num_rec.id_code)
   end
 end
