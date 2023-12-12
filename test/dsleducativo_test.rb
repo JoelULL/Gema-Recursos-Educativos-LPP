@@ -10,6 +10,9 @@ class DslEducativoTest < Test::Unit::TestCase
   end
   
   def test_class_exist
-    assert_nothing_raised {RecursosEducativos::DslEducativo.new}
+    assert_nothing_raised do
+     RecursosEducativos::DslEducativo.new("nombre de prueba") do
+     end
+    end
   end
 end
