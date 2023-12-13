@@ -43,6 +43,26 @@ class DslEducativoTest < Test::Unit::TestCase
     end
     assert_equal(['Secuencias', 'Bucles'],dsl_default.itinerarios)
   end
+  
+  def test_to_s
+    dsl_default = RecursosEducativos::DslEducativo.new(001,'vestibulo',:taller)do
+      registrar 015, 'ull', "exploradores de secuencias", 'Secuencias', RecursosEducativos::BEGINNER,:guiada, :desenchufada, 'papel', 30, [:algoritmos], 'riull',2023
+      registrar 003, 'ull', "kidsort", 'Bucles', RecursosEducativos::BEGINNER,:guiada, :desenchufada, 'papel', 30, [:algoritmos], 'riull',2023
+
+      evaluar 5, 5, 3, 1, 3, 5, 2 ,3
+      evaluar 1, 2, 3, 4, 5, 1, 1, 1
+
+      #concepto 'Secuencias'
+      concepto 'Bucles'
+      concepto 'Secuencias'
+    end
+   # dsl_default.to_s()
+    assert_equal("Itinerario: vestibulo
+1.- kidsort, LORI: {:calidad_contenido=>1, :objetivos_aprendizaje=>2, :motivacion=>3, :diseño_presentacion=>4, :usabilidad=>5, :accesibilidad=>1, :rehusabilidad=>1, :valor_educativo=>1}
+
+2.- exploradores de secuencias, LORI: {:calidad_contenido=>5, :objetivos_aprendizaje=>5, :motivacion=>3, :diseño_presentacion=>1, :usabilidad=>3, :accesibilidad=>5, :rehusabilidad=>2, :valor_educativo=>3}
+\n",dsl_default.to_s())
+  end
 end
 
 
