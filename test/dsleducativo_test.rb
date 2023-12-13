@@ -11,8 +11,10 @@ class DslEducativoTest < Test::Unit::TestCase
   
   def test_class_exist
     assert_nothing_raised do
-     RecursosEducativos::DslEducativo.new("nombre de prueba") do
+     RecursosEducativos::DslEducativo.new(001,'vestibulo',:taller) do
      end
     end
   end
 end
+
+
