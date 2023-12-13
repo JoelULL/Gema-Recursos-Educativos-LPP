@@ -28,16 +28,21 @@ module RecursosEducativos
         @itinerarios << concepto
       end
     end
-    #
-    #def to_s()
-    #end
+    
+    def to_s()
+     orden_recurso_lori = @entorno.coleccion.zip(@evaluaciones).map { |pair| pair }
+     #for element in orden_recurso_lori
+       #puts element[0].titulo
+     #end
+     resultado = orden_recurso_lori.sort_by { |tupla| @itinerarios.index(tupla[0].descripcion)}
+    # for element in resultado
+      # puts element[0].titulo
+     #end
+     imprimir = "Itinerario: #{@entorno.nombre}\n"
+     resultado.each_with_index do |tupla, indice|
+       imprimir += "#{indice + 1}.- #{tupla[0].titulo}, LORI: #{tupla[1]}\n\n"
+     end
+    imprimir
+    end
   end
 end
-                       #id   #nombre   #categoria
-#dsl = DslEducativo.new(001,'vestibulo',:taller) do
-  #registrar 015, 'ull', 'Exploradores...', 'Secuencias',Recursos::INICIAL, :guiada, :desenchufada, 'papel', 30, [:algoritmos], riull, 2023
-  #registrar ...
-  #registrar...
-  #resto de codigo
-#end
-  
