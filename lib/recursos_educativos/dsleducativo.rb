@@ -1,6 +1,6 @@
 module RecursosEducativos
   class DslEducativo
-    attr_reader :recursos
+    attr_reader :recursos, :evaluaciones, :itinerarios
     def initialize(id_entorno,nombre_entorno,categoria_entorno, &bloque)
       @recursos = []
       @entorno = EntornoDigital.new(id_entorno, nombre_entorno,categoria_entorno, [])
@@ -18,9 +18,10 @@ module RecursosEducativos
       @recursos << recurso_nuevo
     end
   end
-    #
-    #def evaluar_recurso(options = {})
-    #end
+    def evaluar(calidad, objetivos, motivacion, diseño, usabilidad, accesibilidad, rehusabilidad, valores)
+      lori = {RecursosEducativos::CALIDAD_CONTENIDO => calidad,RecursosEducativos::OBJETIVOS_APRENDIZAJE => objetivos, RecursosEducativos::MOTIVACION => motivacion, RecursosEducativos::DISEÑO_PRESENTACION => diseño, RecursosEducativos::USABILIDAD => usabilidad,RecursosEducativos::ACCESIBILIDAD => accesibilidad,RecursosEducativos::REHUSABILIDAD => rehusabilidad,RecursosEducativos::VALOR_EDUCATIVO => valores}
+      @evaluaciones << lori
+    end
     #
     #def crear_itinerario()
     #end
