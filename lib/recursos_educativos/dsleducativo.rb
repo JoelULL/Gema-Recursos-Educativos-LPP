@@ -22,9 +22,12 @@ module RecursosEducativos
       lori = {RecursosEducativos::CALIDAD_CONTENIDO => calidad,RecursosEducativos::OBJETIVOS_APRENDIZAJE => objetivos, RecursosEducativos::MOTIVACION => motivacion, RecursosEducativos::DISEÑO_PRESENTACION => diseño, RecursosEducativos::USABILIDAD => usabilidad,RecursosEducativos::ACCESIBILIDAD => accesibilidad,RecursosEducativos::REHUSABILIDAD => rehusabilidad,RecursosEducativos::VALOR_EDUCATIVO => valores}
       @evaluaciones << lori
     end
-    #
-    #def crear_itinerario()
-    #end
+    
+    def concepto(concepto)
+      if (concepto == 'Secuencias' || concepto == 'Variables' || concepto == 'Bucles' || concepto == 'Condicionales' || concepto == 'Funciones')
+        @itinerarios << concepto
+      end
+    end
     #
     #def to_s()
     #end
