@@ -56,7 +56,6 @@ class DslEducativoTest < Test::Unit::TestCase
       concepto 'Bucles'
       concepto 'Secuencias'
     end
-   # dsl_default.to_s()
     assert_equal("Itinerario: vestibulo
 1.- kidsort, LORI: {:calidad_contenido=>1, :objetivos_aprendizaje=>2, :motivacion=>3, :diseño_presentacion=>4, :usabilidad=>5, :accesibilidad=>1, :rehusabilidad=>1, :valor_educativo=>1}
 
@@ -64,5 +63,4 @@ class DslEducativoTest < Test::Unit::TestCase
 \n",dsl_default.to_s())
   end
 end
-
 
