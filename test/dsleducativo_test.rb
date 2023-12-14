@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "test_helper"
-#require "/home/usuario/LPPP/recursos_educativos/lib/recursos_educativos/recurso.rb"
 class DslEducativoTest < Test::Unit::TestCase
   test "VERSION" do
     assert do
@@ -20,6 +19,11 @@ class DslEducativoTest < Test::Unit::TestCase
     @d2 = RecursosEducativos::DigitalesAbiertos.new( 003, 'ull', "kidsort", 'Bucles', RecursosEducativos::BEGINNER,:guiada, :desenchufada, 'papel', 30, [:algoritmos], 'riull',2023)
     @lori1 = {RecursosEducativos::CALIDAD_CONTENIDO => 5,RecursosEducativos::OBJETIVOS_APRENDIZAJE => 5, RecursosEducativos::MOTIVACION => 3, RecursosEducativos::DISEÑO_PRESENTACION => 1, RecursosEducativos::USABILIDAD => 3,RecursosEducativos::ACCESIBILIDAD => 5,RecursosEducativos::REHUSABILIDAD => 2,RecursosEducativos::VALOR_EDUCATIVO => 3}
     @lori2 = {RecursosEducativos::CALIDAD_CONTENIDO => 1,RecursosEducativos::OBJETIVOS_APRENDIZAJE => 2, RecursosEducativos::MOTIVACION => 3, RecursosEducativos::DISEÑO_PRESENTACION => 4, RecursosEducativos::USABILIDAD => 5,RecursosEducativos::ACCESIBILIDAD => 1,RecursosEducativos::REHUSABILIDAD => 1,RecursosEducativos::VALOR_EDUCATIVO => 1}
+  end
+  def test_herencia
+    dsl_default = RecursosEducativos::DslEducativo.new(001,'vestibulo', :taller)do
+    end
+    assert_instance_of(RecursosEducativos::DslEducativo,dsl_default)    
   end
   def test_registrar
     dsl_default = RecursosEducativos::DslEducativo.new(001,'vestibulo',:taller)do
