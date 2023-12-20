@@ -3,7 +3,7 @@
 * * *
 En este repositorio se especifica la gema de recursos educativos utilizados en las siguientes practicas para la asignatura de LPP.
 
-## Installation
+## Instalación
 
 Instala la gema y añade al Gemfile ejecutando:
 
